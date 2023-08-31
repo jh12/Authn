@@ -29,7 +29,7 @@ public class AuthorizationController : ControllerBase
             throw new NotImplementedException("The specified grant is not implemented.");
         }
 
-        var application = await _applicationManager.FindByClientIdAsync(request.ClientId) ??
+        var application = await _applicationManager.FindByClientIdAsync(request!.ClientId!) ??
                           throw new InvalidOperationException("The application cannot be found");
 
         var identity = new ClaimsIdentity(TokenValidationParameters.DefaultAuthenticationType, Claims.Name, Claims.Role);
@@ -39,7 +39,7 @@ public class AuthorizationController : ControllerBase
 
         identity.SetDestinations(static Claim => Claim.Type switch
         {
-            Claims.Name when Claim.Subject.HasScope(Scopes.Profile)
+            Claims.Name when Claim.Subject!.HasScope(Scopes.Profile)
                 => new[] { Destinations.AccessToken, Destinations.IdentityToken },
             _ => new[] { Destinations.AccessToken }
         });

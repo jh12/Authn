@@ -10,8 +10,8 @@ namespace Authn.Controllers;
 public class UserController : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> Get(CancellationToken cancellationToken)
+    public Task<IActionResult> Get()
     {
-        return Ok(HttpContext.User.Identity!.Name);
+        return Task.FromResult<IActionResult>(Ok(HttpContext.User.Identity!.Name));
     }
 }

@@ -42,7 +42,7 @@ jobs:
         push: true
         tags: |
           octothorp.azurecr.io/authn:${{ steps.gitversion.outputs.NuGetVersionV2 }}
-          octothorp.azurecr.io/authn:${{ steps.gitversion.outputs.Major }}${{ steps.gitversion.outputs.PreReleaseTagWithDash }}
-          octothorp.azurecr.io/authn:${{ steps.gitversion.outputs.Major }}.${{ steps.gitversion.outputs.Minor }}${{ steps.gitversion.outputs.PreReleaseTagWithDash }}
+          octothorp.azurecr.io/authn:${{ steps.gitversion.outputs.Major }}${{ steps.gitversion.outputs.PreReleaseLabelWithDash }}
+          octothorp.azurecr.io/authn:${{ steps.gitversion.outputs.Major }}.${{ steps.gitversion.outputs.Minor }}${{ steps.gitversion.outputs.PreReleaseLabelWithDash }}
         build-args: RELEASE_VERSION=${{ steps.gitversion.outputs.NuGetVersionV2 }}
         platforms: linux/amd64, linux/arm64
